@@ -1,19 +1,19 @@
 package com.example.finalprojectjava;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.io.File;
 
@@ -38,14 +38,14 @@ public class ImageManagementTool extends Application {
         StackPane root = new StackPane();
 
         // Set the background color for the root node
-        root.setStyle("-fx-background-color: #00928a;");
-        stage.setTitle("Image Management Tool");
+        root.setStyle("-fx-background-color: #e6f6fe;");
+        stage.setTitle("IMAGE MANAGEMENT TOOL");
 
-        Label headingLabel1 = new Label("IMAGE MANAGEMENT TOOL");
-        headingLabel1.setStyle("-fx-text-fill: #005254; -fx-text-fill: #00928a; -fx-font-size : 15pt; -fx-font-family : Helvetica;");
+        Label headingLabel1 = new Label("Imagement: Pixels meet giggles!!");
+        headingLabel1.setStyle("-fx-text-fill: #040813; -fx-font-size : 15pt; -fx-font-family : Helvetica;");
 
-        Button button1 = new Button("UPLOAD IMAGE");
-        button1.setStyle("-fx-background-color: #00b9b6; -fx-text-fill: #00928a; -fx-font-size : 11pt; -fx-font-family : Helvetica");
+        Button button1 = new Button("Upload Image");
+        button1.setStyle("-fx-background-color: #91ddfb; -fx-text-fill: #040813; -fx-font-size : 12pt; -fx-font-family : Helvetica");
 
         HBox imageUploadBottom = new HBox(5);
         imageUploadBottom.setAlignment(Pos.CENTER);
@@ -60,8 +60,8 @@ public class ImageManagementTool extends Application {
                 "GIF"
         );
         imageCombo = new ComboBox<>(dropdownOptions);
-        imageCombo.setPromptText("SELECT IMAGE FORMAT");
-        imageCombo.setStyle("-fx-background-color: #005254; -fx-text-fill: white; -fx-font-size : 11pt; -fx-font-family : Helvetica");
+        imageCombo.setPromptText("Select Image Format");
+        imageCombo.setStyle("-fx-background-color: #91ddfb; -fx-text-fill: #040813; -fx-font-size : 12pt; -fx-font-family : Helvetica");
 
         HBox dropdownBox = new HBox(5);
         dropdownBox.setAlignment(Pos.CENTER);
@@ -98,6 +98,7 @@ public class ImageManagementTool extends Application {
                 ImageView thumbnailView = new ImageView(thumbnail);
                 thumbnailView.setFitHeight(100);
                 thumbnailView.setFitWidth(100);
+
                 vBox.getChildren().addAll(thumbnailView, imageInfoLabel);
 
                 // Update the dropdown options to remove the selected extension
@@ -109,8 +110,8 @@ public class ImageManagementTool extends Application {
                 imageCombo.getSelectionModel().clearSelection();
 
                 // Creating Download button
-                Button downloadButton = new Button("DOWNLOAD");
-                downloadButton.setStyle("-fx-background-color: #005254; -fx-text-fill: white; -fx-font-size : 11pt; -fx-font-family : Helvetica");
+                Button downloadButton = new Button("Download");
+                downloadButton.setStyle("-fx-background-color: #91ddfb; -fx-text-fill: #040813; -fx-font-size : 12pt; -fx-font-family : Helvetica");
                 downloadButton.setFont(Font.font("System", FontWeight.BOLD, 16));
                 // Setting Download button action to allow users to download converted images
                 downloadButton.setOnAction(event -> {
@@ -125,8 +126,8 @@ public class ImageManagementTool extends Application {
                             converterFactory = new ImageConverterFactoryImpl(selectedExtensionForDownload);
                             ImageConverter imageConverter = converterFactory.createImageConverter();
                             imageConverter.convertAndSave(selectedFile, savedFile);
-                            downloadTips.setText("Download successfull");
-                            downloadTips.setStyle(" -fx-text-fill: green; -fx-font-size : 12pt; -fx-font-family : Helvetica");
+                            downloadTips.setText("Download successful");
+                            downloadTips.setStyle(" -fx-text-fill: #040813; -fx-font-size : 12pt; -fx-font-family : Helvetica");
                         } else {
                             downloadTips.setText("Download canceled");
                         }
