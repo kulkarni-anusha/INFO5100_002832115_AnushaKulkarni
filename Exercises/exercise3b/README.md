@@ -1,2 +1,3 @@
-Make the classes in exercise # 2 serializable
-Test serialization and deserialization of the objects created in exercise # 2.
+**Exercise 2**
+- Make the classes in exercise # 2 serializable
+- Test serialization and deserialization of the objects created in exercise # 2.
