@@ -1,2 +1,2 @@
-**Exercise 3b**
-- Write a console program in Java to exercise at least 5 regular expressions patterns and demonstrate positive and negative cases using at least one subject string for each case.
+**Exercise 5**
+- Write a console program to demonstrate the use (in real-life like example) for at least three design pattern implementation in Java.
