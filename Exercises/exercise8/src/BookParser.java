@@ -120,7 +120,7 @@ public class BookParser {
         // Sample XML
         String xmlData = "<BookShelf>" +
                 "  <Book>" +
-                "    <title>Java Programming</title>" +
+                "    <title>Updated Title</title>" +
                 "    <publishedYear>2022</publishedYear>" +
                 "    <numberOfPages>500</numberOfPages>" +
                 "    <authors>" +
