@@ -2,8 +2,6 @@ package com.example.finalprojectjava;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
+
 import java.io.File;
 
 public class ImageManagementTool extends Application {
@@ -69,19 +68,21 @@ public class ImageManagementTool extends Application {
         vBox.getChildren().addAll(headingBox, uploadAndFormatBox);
 
         ImageView imageView = new ImageView();
-
+        //
         imageView.setFitWidth(100);
         imageView.setFitHeight(100);
-        imageView.setEffect(colorAdjust); // Apply initial color adjustment
+        imageView.setEffect(colorAdjust);
 
         Label imageInfoLabel = new Label();
+        Label locationLabel = new Label();
 
         // Adding Color Filter ComboBox
         ObservableList<String> colorOptions = FXCollections.observableArrayList(
                 "None",
                 "Blue",
                 "Red",
-                "Green"
+                "Green",
+                "Black-and-white"
         );
         ComboBox<String> colorCombo = new ComboBox<>(colorOptions);
         colorCombo.setPromptText("Select Color Filter");
@@ -110,9 +111,9 @@ public class ImageManagementTool extends Application {
                 Image image = new Image(selectedFile.toURI().toString());
                 imageView.setImage(image);
 
-                String imageInfo = "Image Name : " + selectedFile.getName() + "\n" +
-                        "Width : " + image.getWidth() + " pixels\n" +
-                        "Height : " + image.getHeight() + " pixels\n" +
+                String imageInfo = "Image Name: " + selectedFile.getName() + "\n" +
+                        "Width: " + image.getWidth() + " pixels\n" +
+                        "Height: " + image.getHeight() + " pixels\n" +
                         "Size : " + (selectedFile.length() / 1024) + " KB";
 
                 imageInfoLabel.setText(imageInfo);
@@ -131,7 +132,7 @@ public class ImageManagementTool extends Application {
                         String originalExtension = getFileExtension(selectedFile).toUpperCase();
 
                         if (selectedExtension.equals(originalExtension)) {
-                            downloadTips.setText("Image is already in the" + "." + originalExtension.toLowerCase() + " Format. Choose a different extension for image download.");
+                            downloadTips.setText("Image is already in the" + "." + originalExtension.toLowerCase() + " Format. \nChoose a different extension for image download.");
                         } else {
                             FileChooser saveChooser = new FileChooser();
                             saveChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(selectedExtension, "*." + selectedExtension.toLowerCase()));
@@ -143,15 +144,15 @@ public class ImageManagementTool extends Application {
                                 ImageConverter imageConverter = converterFactory.createImageConverter();
                                 imageConverter.convertAndSave(selectedFile, savedFile);
                                 downloadTips.setText("Download successfully");
-                                downloadTips.setStyle("-fx-text-fill: green; -fx-font-size: 11pt; -fx-font-family: Helvetica;");
+                                downloadTips.setStyle(" -fx-text-fill: green; -fx-font-size : 12pt; -fx-font-family : Helvetica");
                             } else {
                                 downloadTips.setText("Download canceled");
-                                downloadTips.setStyle("-fx-text-fill: red; -fx-font-size: 11pt; -fx-font-family: Helvetica;");
+                                downloadTips.setStyle(" -fx-text-fill: red; -fx-font-size : 12pt; -fx-font-family : Helvetica");
                             }
                         }
                     } catch (ImageConversionException | IllegalArgumentException ex) {
                         downloadTips.setText("Download failed! Try another image.");
-                        downloadTips.setStyle("-fx-text-fill: red; -fx-font-size: 11pt; -fx-font-family: Helvetica;");
+                        downloadTips.setStyle(" -fx-text-fill: red; -fx-font-size : 12pt; -fx-font-family : Helvetica");
                         ex.printStackTrace();
                     }
                 });
@@ -179,7 +180,7 @@ public class ImageManagementTool extends Application {
 
         vBox.getChildren().add(downloadBox);
         root.getChildren().add(vBox);
-        // Set width and height respectively
+
         Scene scene = new Scene(root, 500, 600);
         stage.setScene(scene);
         stage.show();
@@ -199,6 +200,9 @@ public class ImageManagementTool extends Application {
                     break;
                 case "none":
                     colorAdjust.setHue(0); // Reset hue to zero for no filter
+                    break;
+                case "black-and-white":
+                    colorAdjust.setHue(1.5);
                     break;
                 default:
                     break;
