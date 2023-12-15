@@ -4,7 +4,6 @@ import java.io.File;
 
 // Interface for ImageConverter
 public interface ImageConverter {
-
-        void convertAndSave(File inputImage, File outputImage) throws ImageConversionException;
-    }
+    void convertAndSave(File inputImage, File outputImage) throws ImageConversionException;
+}
 

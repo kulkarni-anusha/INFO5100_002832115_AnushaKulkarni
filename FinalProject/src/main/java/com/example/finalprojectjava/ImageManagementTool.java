@@ -1,4 +1,5 @@
 package com.example.finalprojectjava;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,18 +30,22 @@ public class ImageManagementTool extends Application {
     @Override
     public void start(Stage stage) {
 
+        // Create the main VBox for the layout
         VBox root = new VBox(10);
         root.setStyle("-fx-background-color: #e6f6fe;");
         stage.setTitle("Image Management Tool");
-        //setting the heading for our tool
+
+        // Set up the heading label
         Label headingLabel1 = new Label("\n\nImagement: Pixels meet giggles!!");
         headingLabel1.setStyle("-fx-text-fill: #040813; -fx-font-size: 16pt; -fx-font-family: Helvetica;");
         HBox headingBox = new HBox();
         headingBox.setAlignment(Pos.TOP_CENTER);
         headingBox.getChildren().add(headingLabel1);
-        //creating upload button dropdown
+
+        //create upload button
         Button button1 = new Button("Upload an image");
         button1.setStyle("-fx-background-color: #91ddfb; -fx-text-fill: #040813; -fx-font-size: 12pt; -fx-font-family: Helvetica;");
+
         //creating dropdown options for image extensions
         ObservableList<String> dropdownOptions = FXCollections.observableArrayList(
                 "PNG",
@@ -51,29 +56,32 @@ public class ImageManagementTool extends Application {
         imageCombo = new ComboBox<>(dropdownOptions);
         imageCombo.setPromptText("Select Image Format");
         imageCombo.setStyle("-fx-background-color: #91ddfb; -fx-text-fill: #040813; -fx-font-size: 12pt; -fx-font-family: Helvetica");
-        //creating download button
+
+        //create download button
         Button downloadButton = new Button("Download");
         downloadButton.setStyle("-fx-background-color: #91ddfb; -fx-text-fill: #040813; -fx-font-size : 12pt; -fx-font-family : Helvetica");
         downloadButton.setDisable(true); // Disable initially
 
+        // Set up the VBox for image upload and format selection
         VBox uploadAndFormatBox = new VBox(10);
         uploadAndFormatBox.setAlignment(Pos.CENTER);
         uploadAndFormatBox.setPadding(new Insets(50, 10, 10, 10));
 
         uploadAndFormatBox.getChildren().addAll(button1, imageCombo, downloadButton);
 
+        // Set up the main VBox
         VBox vBox = new VBox(10);
         vBox.setAlignment(Pos.CENTER);
         vBox.getChildren().addAll(headingBox, uploadAndFormatBox);
 
+        // Set up the ImageView and image info label
         ImageView imageView = new ImageView();
-        //setting the image tumbnail size to 100x100
         imageView.setFitWidth(100);
         imageView.setFitHeight(100);
 
         Label imageInfoLabel = new Label();
 
-        // Adding Color Filter ComboBox
+        // Set up Color Filter ComboBox
         ObservableList<String> colorOptions = FXCollections.observableArrayList(
                 "None",
                 "Blue",
@@ -81,6 +89,7 @@ public class ImageManagementTool extends Application {
                 "Green",
                 "Black-and-white"
         );
+
         ComboBox<String> colorCombo = new ComboBox<>(colorOptions);
         colorCombo.setPromptText("Select Color Filter");
         colorCombo.setStyle("-fx-background-color: #91ddfb; -fx-text-fill: #040813; -fx-font-size: 12pt; -fx-font-family: Helvetica");
@@ -96,18 +105,19 @@ public class ImageManagementTool extends Application {
 
         // Adding Color Filter settings to vBox
         vBox.getChildren().addAll(colorFilterBox, imageView);
-        //creating the functionality of upload button
+
+        // Handle image upload button click
         button1.setOnAction(e -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
 
-            // Displaying image properties (height, width, location)
             File selectedFile = fileChooser.showOpenDialog(stage);
-
+// Display selected image
             if (selectedFile != null) {
                 Image image = new Image(selectedFile.toURI().toString());
                 imageView.setImage(image);
 
+                // Displaying image properties (name, height, width, size)
                 String imageInfo = "Image Name: " + selectedFile.getName() + "\n" +
                         "Width: " + image.getWidth() + " pixels\n" +
                         "Height: " + image.getHeight() + " pixels\n" +
@@ -122,7 +132,7 @@ public class ImageManagementTool extends Application {
                 // Enable the download button
                 downloadButton.setDisable(false);
 
-                // setting the functionaility for Download button
+                // Handle download button click
                 downloadButton.setOnAction(event -> {
                     try {
                         String selectedExtension = imageCombo.getValue().toUpperCase();
@@ -186,9 +196,11 @@ public class ImageManagementTool extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    //this method applies colour filter to the image based on various values of hue and saturation
+
+    // method to apply colour filter to the image based on various values of hue and saturation
     private void applyColorFilter(String colorFilter, ImageView imageView) {
         if (colorFilter != null) {
+
             // Create a new ColorAdjust instance for each filter
             ColorAdjust filterAdjust = new ColorAdjust();
 
@@ -215,6 +227,7 @@ public class ImageManagementTool extends Application {
             imageView.setEffect(filterAdjust);
         }
     }
+
     //method to get the file extension
     private String getFileExtension(File file) {
         String fileName = file.getName();
