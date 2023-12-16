@@ -1,0 +1,38 @@
+{
+  "BookShelf": {
+    "Book": [
+      {
+        "title": "Harry Potter and the Deathly Hallows",
+        "publishedYear": 2007,
+        "numberOfPages": 800,
+        "authors": {
+          "author": "J.K. Rowling"
+        }
+      },
+      {
+        "title": "The Da Vinci Code",
+        "publishedYear": 2003,
+        "numberOfPages": 700,
+        "authors": {
+          "author": "Dan Brown"
+        }
+      },
+      {
+        "title": "Divergent",
+        "publishedYear": 2011,
+        "numberOfPages": 500,
+        "authors": {
+          "author": "Veronica Roth"
+        }
+      },
+      {
+        "title": "The Vampire Diaries",
+        "publishedYear": 1991,
+        "numberOfPages": 300,
+        "authors": {
+          "author": ["L. J. Smith", "Aubrey Clark"]
+        }
+      }
+    ]
+  }
+}
