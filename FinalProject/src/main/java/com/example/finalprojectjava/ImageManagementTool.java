@@ -36,7 +36,7 @@ public class ImageManagementTool extends Application {
         stage.setTitle("Image Management Tool");
 
         // Set up the heading label
-        Label headingLabel1 = new Label("\n\nImagement: Pixels meet giggles!!");
+        Label headingLabel1 = new Label("\n\nQuickPic Converter!!");
         headingLabel1.setStyle("-fx-text-fill: #040813; -fx-font-size: 16pt; -fx-font-family: Helvetica;");
         HBox headingBox = new HBox();
         headingBox.setAlignment(Pos.TOP_CENTER);
