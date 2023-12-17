@@ -125,7 +125,7 @@ public class ImageManagementTool extends Application {
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
             List<File> selectedFiles = fileChooser.showOpenMultipleDialog(stage);
-
+            // Display selected images
             if (selectedFiles != null && !selectedFiles.isEmpty()) {
                 for (File selectedFile : selectedFiles) {
                     Image image = new Image(selectedFile.toURI().toString());
@@ -135,6 +135,7 @@ public class ImageManagementTool extends Application {
 
                     // Add thumbnail and image info to the FlowPane
                     thumbnailsPane.getChildren().addAll(createThumbnailContainer(thumbnail, imageInfoLabel));
+                    // Displaying image properties (name, height, width, size)
                     uploadedImages.add(imageInfo);
                 }
 
@@ -174,7 +175,10 @@ public class ImageManagementTool extends Application {
                             if (savedFile != null) {
                                 // Apply color filter to the image
                                 Image filteredImage = applyColorFilter(imageInfo.getImage(), colorFilter);
-
+                                 /*When a user selects an image format for download,
+                                    an instance of ImageConverterFactoryImpl is created based on the selected extension.
+                                    Then, the createImageConverter() method is called to obtain an ImageConverter instance.
+                                    Finally, this ImageConverter is used to convert and save the image*/
                                 // Use the factory to create the converter
                                 converterFactory = new ImageConverterFactoryImpl(selectedExtension.toUpperCase());
                                 ImageConverter imageConverter = converterFactory.createImageConverter();
